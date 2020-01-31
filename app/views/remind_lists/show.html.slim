@@ -1,0 +1,55 @@
+header
+  .container
+    h1.header-text リマインド詳細
+
+/ チェックするツイートの表示エリア
+section.check-tweet
+  .container
+    - if @tweet
+    = @tweet.html_safe
+
+/ 過去のメモ表示エリア
+section.memo-area
+  .memo-title-area
+    .container
+      h2 過去のメモ
+  .memo-history.memo-margin
+    .container
+      - if @memos.present?
+        - @memos.each do |memo|
+          ul.memo-history__item-wrapper
+            li.memo-history__item
+              p.memo-history__item__date = l(memo.created_at , format: :long)
+              p.memo-history__item__content = simple_format(memo.content)
+        ul.memo-add-area
+      - else
+        ul
+          li.memo-history__item.memo-no-content
+            p.memo-history__item__content まだメモが登録されていません。
+
+section.memo-input-tweet-details
+  .container
+    = form_with(model: @memo, local: true) do |form|
+      .memo-input-tweet-details__wrapper
+        = form.text_area :content , class: 'memo-input-tweet-details__text_area memo-input-text-area' , placeholder: 'メモを入力'
+        = form.hidden_field :remind_list_id , :value => @remind_list.id
+        = form.submit "保存" , class: 'memo-input-tweet-details__submit', id: 'memo_btn'
+
+
+/ javascript:
+/   window.twttr = (function(d, s, id) {
+/   var js, fjs = d.getElementsByTagName(s)[0],
+/     t = window.twttr || {};
+/   if(d.getElementById(id)) return t;
+/   js = d.createElement(s);
+/   js.id = id;
+/   js.src = "https://platform.twitter.com/widgets.js";
+/   fjs.parentNode.insertBefore(js, fjs);
+
+/   t._e = [];
+/   t.ready = function(f) {
+/     t._e.push(f);
+/   };
+
+/   return t;
+/   }(document, "script", "twitter-wjs"));

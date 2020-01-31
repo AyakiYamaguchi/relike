@@ -1,0 +1,37 @@
+header
+  .container
+    h1.header-text LOGO
+
+/ リマインド回数別のリスト表示エリア
+section.remind-history-list
+  - if @remind_group
+    - @remind_group.each do |group_item|
+  
+      .remind-history-list__item
+        .container
+          .remind-history-list__item__title_wrapper
+            p.remind-history-list__item__title = "#{group_item[:count]}回以上リマインドしたツイート(#{group_item[:number]}件)"
+            = link_to 'もっと見る' , "/remind_lists/remind_counts/#{group_item[:count]}", class: 'remind-history-list__item__link'
+          .remind-history-list__item__tweet
+            = group_item[:tweet].html_safe
+
+
+<!-- widgets.js -->
+  javascript:
+    window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if(d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+
+    return t;
+    }(document, "script", "twitter-wjs"));
+

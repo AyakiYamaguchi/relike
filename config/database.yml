@@ -15,11 +15,15 @@
 # gem 'pg'
 #
 default: &default
-  adapter: postgresql
-  encoding: unicode
+  adapter: mysql2
+  encoding: utf8
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: AyakiYamaguchi
+  password: 65dyPOiH
+  host: localhost
+
 
 development:
   <<: *default
@@ -83,3 +87,6 @@ production:
   database: iine-reminder_production
   username: iine-reminder
   password: <%= ENV['IINE-REMINDER_DATABASE_PASSWORD'] %>
+
+
+# create user 'AyakiYamaguchi'@'localhost' identified by '65dyPOiH';

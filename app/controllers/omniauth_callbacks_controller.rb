@@ -1,43 +1,34 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-  def line; basic_action end
+  before_action :authenticate_user!, only: [:twitter]
+  
 
-  private
+  def line
+    @user = User.find_or_create_by(line_uid: request.env['omniauth.auth']['uid'])
+    @user.line_login(request.env['omniauth.auth'])
 
-  def basic_action
-    # コールバックされた値を取得
-    @omniauth = request.env['omniauth.auth']
-        
-    if @omniauth.present?
-      # 登録済みユーザーであれば、ユーザー情報を@profileへ格納
-      @profile = User.where(line_uid: @omniauth['uid']).first
-
-
-      if @profile
-        # プロフィール情報を最新に更新
-        @profile.set_values(@omniauth)
-        sign_in(:user, @profile)
-
-      else
-        # ユーザー情報を新規作成して、ログインユーザーとして扱う
-        # email,passwordはdeviseで必須のため、ダミーでセット
-        @profile = current_user || User.create!(
-          line_uid: @omniauth['uid'], 
-          email:    User.dummy_email(@omniauth),
-          encrypted_password: Devise.friendly_token[0, 20]
-        )
-        
-        # uid 以外のユーザー情報を保存する
-        @profile.set_values(@omniauth)
-        sign_in(:user , @profile)
-      end
+    if @user.twitter_uid.blank?
+      sign_in(:user , @user)
+      redirect_to signup_twitter_path
+    else
+      sign_in(:user , @user)
+      redirect_to remind_lists_path
     end
-
-    flash[:notice] = "ログインしました"
-    redirect_to user_path(@profile)
   end
 
-  # ダミーアドレス作成メソッド
-  def self.dummy_email(auth)
-    "#{auth.uid}-#{auth.provider}@example.com"
+
+  def twitter
+    @user = current_user
+
+    # Twitter連携が初めての場合と、連携済みの場合で処理を分岐させる
+    if @user.twitter_uid.blank?
+      @user.link_with_twitter(request.env['omniauth.auth'])
+      RemindList.new.set_first_remind_tweet(@user)
+      redirect_to signup_finish_path
+    else
+      @user.link_with_twitter(request.env['omniauth.auth'])
+      redirect_to remind_lists_path
+    end
+    
   end
+
 end

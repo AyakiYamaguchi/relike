@@ -1,0 +1,20 @@
+header
+  .container
+    h1.header-text LOGO
+
+section.finish-area
+  .container
+    h2.finish-area__title 登録完了
+    .finish-area__img
+      = image_tag 'icon-check.png'
+    .finish-area__text
+     p 
+      |いいねリマインダーへの
+      br
+      |アカウント登録が完了しました。
+
+section.signup-finish
+  .container
+    p.signup-finish__text
+      | さっそく最初のいいねチェックをはじめましょう。
+    = link_to 'いいねチェックを始める' , "/remind_lists/#{current_user.id}/#{@today}" , class: 'confirm-btn'

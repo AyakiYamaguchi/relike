@@ -1,0 +1,14 @@
+header
+  .container
+    h1.header-text = l(@remind_date , format: :default)+" のいいねリマインド"
+
+section.finish-area
+  .container
+    h2.finish-area__title チェック完了
+    .finish-area__img
+      = image_tag 'icon-check.png'
+    .finish-area__text
+     p = l(@remind_date , format: :default)+"のいいねチェックは完了しました。"
+     p お疲れさまでした。
+
+    = link_to 'ホームへ戻る' , remind_lists_path , class: 'finish-area__home-btn'

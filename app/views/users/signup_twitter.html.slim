@@ -1,0 +1,46 @@
+header
+  .container
+    h1.header-text LOGO
+
+section.signup-process
+  .container
+    ul.signup-process__wrapper.signup-process__bar__step3
+      li.signup-process__item
+        .signup-process__item__circle.signup-process__item__circle-color__gray
+          p 1
+        p.signup-process__item__text.signup-process__item__text-color__gray
+          |LINE
+          br
+          |友達登録
+      li.signup-process__item
+        .signup-process__item__circle.signup-process__item__circle-color__gray
+          p 2
+        p.signup-process__item__text.signup-process__item__text-color__gray
+          |LINE
+          br
+          |アカウント登録
+      li.signup-process__item
+        .signup-process__item__circle.signup-process__item__circle-color__blue
+          p 3
+        p.signup-process__item__text.signup-process__item__text-color__blue
+          |Twitter
+          br
+          |アカウント連携
+
+section.signup-image-area
+  .container
+    h2.signup-image-area__title
+      |Twitterアカウントを
+      br
+      |いいねリマインダーと連携させましょう！
+    ul.signup-image-area__wrapper
+      li.signup-image-area__items
+        = image_tag 'account-icon.png' , class: 'signup-image-area__items__image'
+        p.signup-image-area__items__text いいねリマインダー
+      li.signup-image-area__items
+        = image_tag 'Arrow_2.png' , class: 'signup-image-area__items__image__center'
+      li.signup-image-area__items
+        = image_tag 'Twitter_Social_Icon_Circle_Color.png' , class: 'signup-image-area__items__image'
+        p.signup-image-area__items__text Twitterアカウント
+
+    = link_to 'Twitterアカウントを連携' , user_twitter_omniauth_authorize_path , class: 'confirm-btn'

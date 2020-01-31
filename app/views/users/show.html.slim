@@ -3,5 +3,25 @@ p Find me in app/views/users/show.html.slim
 = @user.line_uid
 = @user.name
 
+br
+/ 友達追加ボタン
 <div class="line-it-button" data-lang="ja" data-type="friend" data-lineid="@193znlwv" style="display: none;"></div>
  <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+
+
+h2 Twitter認証
+
+= @user.twitter_uid
+= link_to 'Twitter認証' , user_twitter_omniauth_authorize_path
+= current_user.name
+
+
+br
+br
+
+h2 いいねしたツイート
+= link_to 'いいねしたツイートを確認', "/remind_lists/#{current_user.id}/20191225"
+
+
+h2 LINEプッシュメッセージ送信
+= link_to 'LINEプッシュメッセージを送信', "/push_message", method: :post

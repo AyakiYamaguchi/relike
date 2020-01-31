@@ -1,0 +1,46 @@
+header
+  .container
+    h1.header-text LOGO
+
+section.signup-process
+  .container
+    ul.signup-process__wrapper.signup-process__bar__step2
+      li.signup-process__item
+        .signup-process__item__circle.signup-process__item__circle-color__gray
+          p 1
+        p.signup-process__item__text.signup-process__item__text-color__gray
+          |LINE
+          br
+          |友達登録
+      li.signup-process__item
+        .signup-process__item__circle.signup-process__item__circle-color__blue
+          p 2
+        p.signup-process__item__text.signup-process__item__text-color__blue
+          |LINE
+          br
+          |アカウント登録
+      li.signup-process__item
+        .signup-process__item__circle.signup-process__item__circle-color__right-blue
+          p 3
+        p.signup-process__item__text.signup-process__item__text-color__gray
+          |Twitter
+          br
+          |アカウント連携
+
+section.signup-image-area
+  .container
+    h2.signup-image-area__title
+      |LINEアカウント情報を
+      br
+      |いいねリマインダーに登録しましょう！
+    ul.signup-image-area__wrapper
+      li.signup-image-area__items
+        = image_tag 'LINE_APP.png' , class: 'signup-image-area__items__image'
+        p.signup-image-area__items__text LINEアカウント
+      li.signup-image-area__items
+        = image_tag 'Arrow_1.png' , class: 'signup-image-area__items__image__center'
+      li.signup-image-area__items
+        = image_tag 'account-icon.png' , class: 'signup-image-area__items__image'
+        p.signup-image-area__items__text いいねリマインダー
+
+    = link_to 'LINEアカウントを登録' , user_line_omniauth_authorize_path , class: 'confirm-btn'

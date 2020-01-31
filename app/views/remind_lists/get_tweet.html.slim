@@ -1,0 +1,12 @@
+= @fav_tweets
+
+- @fav_tweets.each do |tweet|
+  = current_user.id
+  br
+  = tweet.attrs[:id]
+  br
+  = tweet.attrs[:user][:id]
+  br
+  = tweet.attrs[:user][:name]
+  br
+  = tweet.attrs[:text]
