@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :users, :only => [:show]
   resources :remind_lists, :only => [:index, :update, :show]
   resources :memos, :only => [:create]
-  get 'signup', to: 'users#new'
+  get 'signup', to: 'users#signup'
   get '/signup/line', to: 'users#signup_line'
   get '/signup/twitter', to: 'users#signup_twitter'
   get '/signup/finish', to: 'users#signup_finish'

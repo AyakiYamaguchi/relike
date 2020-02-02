@@ -1,0 +1,43 @@
+header
+  .container
+    h1.header-text LOGO
+
+section.signup-process
+  .container
+    ul.signup-process__wrapper.signup-process__bar__step1
+      li.signup-process__item
+        .signup-process__item__circle.signup-process__item__circle-color__blue
+          p 1
+        p.signup-process__item__text.signup-process__item__text-color__blue
+          |LINE
+          br
+          |友達登録
+      li.signup-process__item
+        .signup-process__item__circle.signup-process__item__circle-color__right-blue
+          p 2
+        p.signup-process__item__text.signup-process__item__text-color__gray
+          |LINE
+          br
+          |アカウント登録
+      li.signup-process__item
+        .signup-process__item__circle.signup-process__item__circle-color__gray
+          p 3
+        p.signup-process__item__text.signup-process__item__text-color__gray
+          |Twitter
+          br
+          |アカウント連携
+
+section.signup-image-area
+  .container
+    h2.signup-image-area__title
+      |いいねリマインダーのLINE公式アカウントを
+      br
+      |友達登録しましょう！
+    = image_tag 'https://qr-official.line.me/sid/M/193znlwv.png', class: 'signup-image-area__line-add-friend__img'
+
+    p.signup-image-area__line-add-friend__text
+     |QRコードを読み込むか、下記のボタンをクリックして友達追加してください。
+
+    .line-btn-area
+      .line-it-button data-lang="ja" data-type="friend" data-lineid="@193znlwv" style="display: none;"
+      <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>

@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   # before_action :authenticate_user!
-
+  def signup
+  end
 
   def signup_line
   end
@@ -10,9 +11,6 @@ class UsersController < ApplicationController
 
   def signup_finish
     @today = Date.today.strftime("%Y%m%d")
-  end
-
-  def new
   end
 
   def show
