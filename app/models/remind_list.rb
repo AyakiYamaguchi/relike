@@ -10,7 +10,7 @@ class RemindList < ApplicationRecord
     @client = set_twitter_Authentication
 
     # お気に入りした最新ツイート100件まで取得する
-    @fav_tweets = @client.favorites( count: 100  ).reverse!
+    @fav_tweets = @client.favorites( count: 100 ).reverse!
 
     today = Date.today
     count = 0                # リマインドタイミングを計算するカウント数 
@@ -68,15 +68,12 @@ class RemindList < ApplicationRecord
 
   # いいねチェック画面に表示するツイートを取得するメソッド
   def find_remind_tweet_list(user_id , remind_date)
-    remind_date = Date.parse(remind_date)
 
     # リマインド日の曜日によってツイート取得の開始日を変える
     if remind_date.wday == 0 # 日曜日の場合
       start_date = remind_date - 4
     elsif remind_date.wday == 3 # 水曜日の場合
       start_date = remind_date - 3
-    else
-      return @message 
     end
     
     # 表示対象のツイートの検索処理
