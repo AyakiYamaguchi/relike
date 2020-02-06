@@ -47,5 +47,7 @@ gem 'twitter'
 gem 'mysql2'
 gem 'line-bot-api'
 gem 'jquery-rails'
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
 # 環境変数の管理
 gem 'dotenv-rails'

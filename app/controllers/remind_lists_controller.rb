@@ -41,9 +41,10 @@ class RemindListsController < ApplicationController
 
 
   def check_list
-    # パラメータの日付とリマインド日が一致するリマインドリストを取得
-    @remind_list = RemindList.new.find_remind_tweet_list(current_user.id , params[:remind_date]).first
-    @remind_date = Date.parse(params[:remind_date])
+    # before_action で日曜日と水曜日以外だったらリダイレクトする処理を追加する
+
+    remind_date = Date.parse(params[:remind_date])
+    @remind_list = RemindList.new.find_remind_tweet_list(current_user.id , remind_date).first
 
     # リマインドリストが存在しない場合は完了画面へリダイレクトさせる
     if @remind_list.blank?
@@ -51,7 +52,6 @@ class RemindListsController < ApplicationController
       return
     end
 
-    # リマインドリストのメモ情報を取得
     @memos = @remind_list.memos
 
     # リマインドリストの埋め込みツイートを取得
@@ -75,6 +75,7 @@ class RemindListsController < ApplicationController
     @remind_list = RemindList.new.find_remind_tweet_list(current_user.id , params[:remind_date]).first
     
     if @remind_lists.present?
+      redirect_to test_remind_lists_path(current_user.id, remind_date)
       redirect_to "/remind_lists/#{current_user.id}/#{params[:remind_date]}"
     else
       redirect_to "/remind_lists/#{current_user.id}/#{params[:remind_date]}/finish"
@@ -90,37 +91,12 @@ class RemindListsController < ApplicationController
   end
 
 
-  def push_message
-    client ||= Line::Bot::Client.new { |config|
-      config.channel_secret = ENV["CHANNEL_SECRET"]
-      config.channel_token = ENV["CHANNEL_ACCESS_TOKEN"]
-    }
-
-    @user = current_user
-
-    message = {
-      type: 'text',
-      text: 'test'
-    }
-    
-    response = client.push_message(@user.line_uid , message)
-    puts response
-    logger.debug(response)
-  end
-
   private
 
   def get_remind_tweet(user_id , remind_date)
     # 受け取ったremind_dateをDateオブジェクトに変換
     remind_date = Date.parse(remind_date)
     RemindList.new.find_remind_tweet_list(user_id, remind_date )
-  end
-  
-  def text_message
-    {
-      "type" => "text",
-      "text" => "test"
-    }
   end
 
 end
