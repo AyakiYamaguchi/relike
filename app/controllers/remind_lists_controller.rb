@@ -1,5 +1,7 @@
 class RemindListsController < ApplicationController
   before_action :authenticate_user!
+  before_action :date_parse , only:[:finish , :not_found , :check_list]
+  before_action :get_remind_list , only:[:show , :update]
   include OembedTweet
 
   def index
@@ -33,7 +35,6 @@ class RemindListsController < ApplicationController
   end
 
   def show
-    @remind_list = RemindList.find_by(id: params[:id])
     @memos = @remind_list.memos
     @tweet = get_oembed_tweet_only_one(@remind_list)
     @memo = Memo.new
@@ -41,9 +42,8 @@ class RemindListsController < ApplicationController
 
 
   def check_list
-    # before_action で日曜日と水曜日以外だったらリダイレクトする処理を追加する
+    wday_check(@remind_date)
 
-    remind_date = Date.parse(params[:remind_date])
     @remind_list = RemindList.new.find_remind_tweet_list(current_user.id , remind_date).first
 
     # リマインドリストが存在しない場合は完了画面へリダイレクトさせる
@@ -56,19 +56,13 @@ class RemindListsController < ApplicationController
 
     # リマインドリストの埋め込みツイートを取得
     @tweet = get_oembed_tweet_only_one(@remind_list)
-    logger.debug(@tweet)
   end
 
 
   def update
     # いいねチェック結果の更新処理へ
-    @remind_list = RemindList.find(params[:id])
     @remind_list.iine_check(params[:commit])
 
-    # メモがあれば内容を保存
-    # if params[:memo_content].present?
-    #   Memo.create!(remind_list_id: params[:id] , content: params[:memo_content])
-    # end
     @memo = Memo.new
 
     # まだリマインドリストが存在したらリストを取得してリダイレクトさせる
@@ -83,11 +77,9 @@ class RemindListsController < ApplicationController
   end
 
   def finish
-    @remind_date = Date.parse(params[:remind_date])
   end
 
   def not_found
-    @remind_date = Date.parse(params[:remind_date])
   end
 
 
@@ -97,6 +89,24 @@ class RemindListsController < ApplicationController
     # 受け取ったremind_dateをDateオブジェクトに変換
     remind_date = Date.parse(remind_date)
     RemindList.new.find_remind_tweet_list(user_id, remind_date )
+  end
+
+  def date_parse
+    @remind_date = Date.parse(params[:remind_date])
+  end
+
+  def wday_check(remind_date)
+    if remind_date.wday == 0 # 日曜日の場合
+      return
+    elsif remind_date.wday == 3 # 水曜日の場合
+      return
+    else
+      redirect_to not_found_remind_list_path
+    end
+  end
+
+  def get_remind_list
+    @remind_list = RemindList.find(params[:id])
   end
 
 end
