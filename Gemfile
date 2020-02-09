@@ -49,5 +49,6 @@ gem 'line-bot-api'
 gem 'jquery-rails'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
+gem 'kaminari'
 # 環境変数の管理
 gem 'dotenv-rails'

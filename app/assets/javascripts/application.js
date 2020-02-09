@@ -12,26 +12,10 @@
 //
 // = require rails-ujs
 //= require activestorage
-//= require_tree .
 //= require jquery
 //= require jquery_ujs
-
-// window.onpageshow = function(event) {
-//   if (event.persisted) {
-//        window.location.reload();
-//    }
-// };
-
-// iOSデバイスでフォーム入力時にズームしてしまうのを防ぐ
-// var ua = navigator.userAgent.toLowerCase();
-// var isiOS = (ua.indexOf('iphone') > -1) || (ua.indexOf('ipad') > -1);
-// if(isiOS) {
-//   var viewport = document.querySelector('meta[name="viewport"]');
-//   if(viewport) {
-//     var viewportContent = viewport.getAttribute('content');
-//     viewport.setAttribute('content', viewportContent + ', user-scalable=no');
-//   }
-// }
+//= require_tree .
+//= require jquery.jscroll.min.js
 
 
 // テキストエリアで改行に合わせて高さを自動調整する
@@ -70,4 +54,16 @@ $(function() {
     // ボタンのクリック状態をリセット
     $('.memo-input-tweet-details__submit').attr('disabled', false);
   });
+});
+
+
+$(window).on('scroll', function() {
+  scrollHeight = $(document).height();
+  scrollPosition = $(window).height() + $(window).scrollTop();
+  if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
+      $('.jscroll').jscroll({
+        contentSelector: '.remind-history-list' ,
+        nextSelector: 'span.next a'
+      });
+  }
 });

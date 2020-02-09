@@ -22,16 +22,18 @@ class RemindListsController < ApplicationController
   end
 
   def list_by_count
-    remind_lists = RemindList.where(user_id: current_user.id , remind_count: params[:remind_count]).limit(5)
+    remind_lists = RemindList.where(user_id: current_user.id , remind_count: params[:remind_count]).limit(15)
     @memos = remind_lists.joins(:memos).group("remind_lists.id").count
 
-    @remind_lists_items = remind_lists.map do |remind_list|
+    remind_lists_items = remind_lists.map do |remind_list|
       {
         remind_list: remind_list ,
         memo_counts: @memos[remind_list.id] ,
         tweet: get_oembed_tweet_only_one(remind_list)
       }
     end
+
+    @remind_lists_items = Kaminari.paginate_array(remind_lists_items).page(params[:page]).per(5)
   end
 
   def show

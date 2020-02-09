@@ -2,7 +2,7 @@ header
   .container
     h1.header-text = "#{params[:remind_count]}回リマインドしたツイート一覧"
 
-section.remind-history-list
+section.remind-history-list.jscroll
   - if @remind_lists_items
     - @remind_lists_items.each do |item|
   
@@ -19,23 +19,4 @@ section.remind-history-list
               - else
                 = image_tag 'comment_icon.png' , class: 'comment-icon-image'
                 p.comment-counts = "0"
-
-
-
-/ javascript:
-/   window.twttr = (function(d, s, id) {
-/   var js, fjs = d.getElementsByTagName(s)[0],
-/     t = window.twttr || {};
-/   if(d.getElementById(id)) return t;
-/   js = d.createElement(s);
-/   js.id = id;
-/   js.src = "https://platform.twitter.com/widgets.js";
-/   fjs.parentNode.insertBefore(js, fjs);
-
-/   t._e = [];
-/   t.ready = function(f) {
-/     t._e.push(f);
-/   };
-
-/   return t;
-/   }(document, "script", "twitter-wjs"));
+    = paginate @remind_lists_items
