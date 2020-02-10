@@ -10,9 +10,8 @@ body {
   margin-right: 2.5%;
 
   @media (min-width: 768px){
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+    width: 768px;
+    margin: 0 auto;
   }
 }
 
