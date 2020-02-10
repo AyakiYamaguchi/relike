@@ -1,0 +1,250 @@
+// -- ランディングページ 関連 --------------------------------------//
+
+.first-view-area__wrapper {
+  padding: 25px 0;
+}
+
+.first-view-area__account{
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  
+  img {
+    height: 41px;
+    width: auto;
+  }
+}
+
+.first-view-area__account_name {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.account_name {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.account_id {
+  font-size: 1.4rem;
+  color: #828282;
+}
+
+.first-view-area__text {
+  font-size: 2.1rem;
+  font-weight: 200;
+  height: 330px;
+  letter-spacing: 0.5px;
+  margin-bottom: 15px;
+}
+
+.first-view-area__time {
+  font-size: 1.2rem;
+  padding-bottom: 15px;
+  color: #828282;
+  border-bottom: solid 1px #E0E0E0;
+}
+
+.first-view-area__icon {
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15px;
+
+  img {
+    height: 21px;
+    width: auto;
+  }
+}
+
+
+.enter-area {
+  background: image-url('enter-area-background-img.jpg');
+  background-size: cover;
+  background-position:center bottom;
+}
+
+.enter-area-background {
+  background-color: rgba(57,167,227,0.85);
+}
+
+.enter-area__wrapper {
+  padding: 50px 0;
+
+  h2 {
+    font-size: 2.4rem;
+    text-align: center;
+    line-height: 1.4;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: #fff;
+  }
+}
+
+.enter-area-btn {
+  text-align: center;
+
+  a {
+    width: 90%;
+    display: inline-block;
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 20px 0;
+    text-decoration: none;
+    background-color: #FBBB01;
+    border-bottom: solid 5px #F2994A;
+    color: #fff;
+    border-radius: 5px;
+  }
+
+  a:active {
+    -webkit-transform: translateY(4px);
+    transform: translateY(4px);/*下に動く*/
+    border-bottom: none;/*線を消す*/
+  }
+}
+
+
+.introductions-area {
+  background-color: #D1ECF9;
+  padding-top: 60px;
+  padding-bottom: 40px;
+
+  h2 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}
+
+.introductions-area__item {
+  background-color: #fff;
+  padding: 35px 0 ;
+  margin-bottom: 20px;
+
+  p {
+    font-size: 1.4rem;
+    margin:0 10%;
+    line-height: 1.8;
+  }
+}
+
+.introductions-area__item__title {
+  text-align: center;
+
+  h3 {
+    display: inline-block;
+    font-size: 1.6rem;
+    text-align: center;
+    margin-bottom: 30px;
+    background: linear-gradient(transparent 70%, #4DADE1 70%);
+  }
+}
+
+.introductions-area__item__img {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.remind-icon {
+  height: 95px;
+  width: auto;
+}
+
+.check-icon {
+  height: 97px;
+  width: auto;
+}
+
+.comment-icon {
+  height: 85px;
+  width: auto;
+}
+
+
+.start-procedure-area {
+  padding-top: 60px;
+  
+  h3 {
+    font-size: 1.8rem;
+    text-align: center;
+    padding-bottom: 50px;
+  }
+
+}
+
+.start-procedure-area__item {
+  margin-bottom: 70px;
+}
+
+.start-procedure-area__item__title {
+  display: flex;
+  margin: 0 10%;
+
+  .number {
+    display: inline-block;
+    font-size: 1.2rem;
+    width: 24px;
+    height: 24px;
+    color: #fff;
+    background-color: #39A7E3;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+  }
+
+  .title {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-left: 10px;
+    line-height: 24px;
+  }
+}
+
+footer {
+
+  ul {
+    display: flex;
+    justify-content: center;
+    padding: 15px 0;
+    background-color: #D1ECF9;
+  }
+
+  li {
+    margin-left: 15px;
+    a {
+      text-decoration: none;
+      color: #828282;
+    }
+  }
+}
+
+
+.ityped-cursor {
+  font-size: 2.2rem;
+  opacity: 1;
+  -webkit-animation: blink 0.3s infinite;
+  -moz-animation: blink 0.3s infinite;
+  animation: blink 0.3s infinite;
+  animation-direction: alternate;
+}
+
+// @keyframes blink {
+//   100% {
+//       opacity: 0;
+//   }
+// }
+
+// @-webkit-keyframes blink {
+//   100% {
+//       opacity: 0;
+//   }
+// }
+
+// @-moz-keyframes blink {
+//   100% {
+//       opacity: 0;
+//   }
+// }

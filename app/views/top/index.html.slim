@@ -1,0 +1,141 @@
+header
+  .container
+    h1.header-text = "LOGO"
+
+section.first-view-area
+  .container
+    .first-view-area__wrapper
+      .first-view-area__account
+        = image_tag 'top-account-icon.png'
+        .first-view-area__account_name
+          p.account_name いいねリマインダー
+          p.account_id @iine-reminder
+
+      .first-view-area__text
+        span#ityped1.ityped
+        br
+        br
+        span#ityped2.ityped
+        br
+        br
+        span#ityped3.ityped
+
+      .first-view-area__time
+        p 午前10:14・2019年12月1日
+
+      .first-view-area__icon
+        = image_tag 'top-comment-icon.png'
+        = image_tag 'top-retweet-icon.png'
+        = image_tag 'top-fav-icon.png'
+
+section.enter-area
+  .enter-area-background
+    .container
+      .enter-area__wrapper
+        h2
+          | さっそく
+          br
+          | いいねリマインダーを
+          br
+          | 使ってみる
+        .enter-area-btn
+          = link_to 'いいねリマインダーに登録' , signup_path
+
+  
+section.introductions-area
+  .container
+    .introductions-area__wrapper
+      h2 いいねリマインダーでできること
+      .introductions-area__item
+        .introductions-area__item__title
+          h3 いいねしたツイートをリマインド配信
+        .introductions-area__item__img
+          = image_tag 'remind-icon.png' , class: 'remind-icon'
+        p
+          |過去にいいねしたツイートを、定期的にLINEでリマインド通知してくれます。
+          br
+          |感銘を受けたツイートや、大切な思い出のツイートを思い出させてくれます。
+
+      .introductions-area__item
+        .introductions-area__item__title
+          h3 いいねしたツイートのチェック
+        .introductions-area__item__img
+          = image_tag 'check-icon.png' , class: 'check-icon'
+        p 過去にいいねしたツイート確認し「また見たい」か「もう見ない」ツイートに分ける事ができます。「また見たい」を選択したツイートは、一定期間でリマインド通知されます。
+
+      .introductions-area__item
+        .introductions-area__item__title
+          h3 いいねしたツイートへのメモ
+        .introductions-area__item__img
+          = image_tag 'comment-icon.png' , class: 'comment-icon'
+        p
+          |リマインド内容に対して、自分だけのメモを残すことができます。
+          br
+          |時間の経過ととも変わるツイートに対する考えや、今だからこそ思うことを自分だけのメモとして残しておきましょう。
+
+
+section.start-procedure-area
+  .container
+    h3 簡単3ステップで開始できます
+
+    .start-procedure-area__item
+      .start-procedure-area__item__title
+        p.number 1
+        p.title LINE公式アカウントを友だち追加
+      ul.signup-image-area__wrapper
+        li.signup-image-area__items
+          = image_tag 'LINE_APP.png' , class: 'signup-image-area__items__image'
+          p.signup-image-area__items__text LINEアカウント
+        li.signup-image-area__items
+          = image_tag 'Arrow_1.png' , class: 'signup-image-area__items__image__center'
+        li.signup-image-area__items
+          = image_tag 'account-icon.png' , class: 'signup-image-area__items__image'
+          p.signup-image-area__items__text いいねリマインダー
+
+    .start-procedure-area__item
+      .start-procedure-area__item__title
+        p.number 2
+        p.title LINEアカウントでいいねリマインダーに登録
+      ul.signup-image-area__wrapper
+        li.signup-image-area__items
+          = image_tag 'LINE_APP.png' , class: 'signup-image-area__items__image'
+          p.signup-image-area__items__text LINEアカウント
+        li.signup-image-area__items
+          = image_tag 'Arrow_1.png' , class: 'signup-image-area__items__image__center'
+        li.signup-image-area__items
+          = image_tag 'account-icon.png' , class: 'signup-image-area__items__image'
+          p.signup-image-area__items__text いいねリマインダー
+
+    .start-procedure-area__item
+      .start-procedure-area__item__title
+        p.number 3
+        p.title Twitterアカウントを連携
+      ul.signup-image-area__wrapper
+        li.signup-image-area__items
+          = image_tag 'account-icon.png' , class: 'signup-image-area__items__image'
+          p.signup-image-area__items__text いいねリマインダー
+        li.signup-image-area__items
+          = image_tag 'Arrow_2.png' , class: 'signup-image-area__items__image__center'
+        li.signup-image-area__items
+          = image_tag 'Twitter_Social_Icon_Circle_Color.png' , class: 'signup-image-area__items__image'
+          p.signup-image-area__items__text Twitterアカウント
+
+section.enter-area
+  .enter-area-background
+    .container
+      .enter-area__wrapper
+        h2
+          | さっそく
+          br
+          | いいねリマインダーを
+          br
+          | 使ってみる
+        .enter-area-btn
+          = link_to 'いいねリマインダーに登録' , signup_path
+
+footer
+  ul
+    li 
+      = link_to '利用規約' , root_path
+    li 
+      = link_to 'プライバシーポリシー'  , root_path

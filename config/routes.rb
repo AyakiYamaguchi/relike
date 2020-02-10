@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'top#index'
   get 'remind_lists/index'
   get 'remind_lists/show'
   devise_for :users, controllers: {:omniauth_callbacks => "omniauth_callbacks"}

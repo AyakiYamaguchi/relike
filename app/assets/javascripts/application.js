@@ -16,6 +16,8 @@
 //= require jquery_ujs
 //= require_tree .
 //= require jquery.jscroll.min.js
+//= require typing_cursor.js
+//= require ityped.js
 
 
 // テキストエリアで改行に合わせて高さを自動調整する
