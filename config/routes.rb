@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   resources :remind_lists, :only => [:index, :update, :show] do
     collection do
       get 'remind_counts/:remind_count' , to: 'remind_lists#list_by_count', as: :count
-      get ':user_id/:remind_date' , to: 'remind_lists#check_list' , as: :test
-      get ':user_id/:remind_date/finish' , to: 'remind_lists#finish'
+      get ':user_id/:remind_date' , to: 'remind_lists#check_list' , as: :check
+      get ':user_id/:remind_date/finish' , to: 'remind_lists#finish' , as: :check_finish
       get 'not_found' , to: 'remind_lists#not_found'
     end
   end

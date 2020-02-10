@@ -46,11 +46,12 @@ class RemindListsController < ApplicationController
   def check_list
     wday_check(@remind_date)
 
-    @remind_list = RemindList.new.find_remind_tweet_list(current_user.id , remind_date).first
+    @remind_list = RemindList.new.find_remind_tweet_list(current_user.id , @remind_date).first
 
     # リマインドリストが存在しない場合は完了画面へリダイレクトさせる
     if @remind_list.blank?
-      redirect_to "/remind_lists/#{current_user.id}/#{params[:remind_date]}/finish"
+      redirect_to check_finish_remind_lists_path(current_user.id, params[:remind_date])
+      # redirect_to "/remind_lists/#{current_user.id}/#{params[:remind_date]}/finish"
       return
     end
 
@@ -71,10 +72,11 @@ class RemindListsController < ApplicationController
     @remind_list = RemindList.new.find_remind_tweet_list(current_user.id , params[:remind_date]).first
     
     if @remind_lists.present?
-      redirect_to test_remind_lists_path(current_user.id, remind_date)
-      redirect_to "/remind_lists/#{current_user.id}/#{params[:remind_date]}"
+      redirect_to check_remind_lists_path(current_user.id, params[:remind_date])
+      # redirect_to "/remind_lists/#{current_user.id}/#{params[:remind_date]}"
     else
-      redirect_to "/remind_lists/#{current_user.id}/#{params[:remind_date]}/finish"
+      redirect_to check_finish_remind_lists_path(current_user.id, params[:remind_date])
+      # redirect_to "/remind_lists/#{current_user.id}/#{params[:remind_date]}/finish"
     end
   end
 
