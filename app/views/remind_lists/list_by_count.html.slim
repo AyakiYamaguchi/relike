@@ -3,20 +3,22 @@ header
     h1.header-text = "#{params[:remind_count]}回リマインドしたツイート一覧"
 
 section.remind-history-list.jscroll
-  - if @remind_lists_items
-    - @remind_lists_items.each do |item|
-  
-      .remind-history-list__item
-        .container
-          .remind-history-list__item__wrapper
-            = link_to '',"/remind_lists/#{item[:remind_list].id}"
-            .remind-history-list__item__tweet.no_link
-              = item[:tweet].html_safe
-            .remind-history-list__item__memo_counts
-              - if item[:memo_counts].present?
-                = image_tag 'comment_icon.png' , class: 'comment-icon-image'
-                p.comment-counts = "#{item[:memo_counts]}"
-              - else
-                = image_tag 'comment_icon.png' , class: 'comment-icon-image'
-                p.comment-counts = "0"
-    = paginate @remind_lists_items
+  .remind-history-list__wrapper
+    - if @remind_lists_items
+      - @remind_lists_items.each do |item|
+    
+        .remind-history-list__item
+          .container
+            .remind-history-list__item__wrapper
+              = link_to '',"/remind_lists/#{item[:remind_list].id}"
+              .remind-history-list__item__tweet.no_link
+                = item[:tweet].html_safe
+                - logger.debug(item[:tweet].html_safe)
+              .remind-history-list__item__memo_counts
+                - if item[:memo_counts].present?
+                  = image_tag 'comment_icon.png' , class: 'comment-icon-image'
+                  p.comment-counts = "#{item[:memo_counts]}"
+                - else
+                  = image_tag 'comment_icon.png' , class: 'comment-icon-image'
+                  p.comment-counts = "0"
+      = paginate @remind_lists_items

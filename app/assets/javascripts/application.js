@@ -64,8 +64,13 @@ $(window).on('scroll', function() {
   scrollPosition = $(window).height() + $(window).scrollTop();
   if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
       $('.jscroll').jscroll({
-        contentSelector: '.remind-history-list' ,
-        nextSelector: 'span.next a'
+        contentSelector: '.remind-history-list__wrapper' ,
+        nextSelector: 'span.next a',
+        callback: function() {
+          $script = $('<script>')
+          $script.attr('src', 'https://platform.twitter.com/widgets.js')
+          $('body').append($script)
+        }
       });
-  }
-});
+    }
+  });
