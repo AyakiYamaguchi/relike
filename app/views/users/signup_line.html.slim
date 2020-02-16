@@ -1,6 +1,7 @@
 header
   .container
-    h1.header-text LOGO
+    h1.header-logo
+      = image_tag 'logo.png' , class: 'header-logo-img'
 
 section.signup-process
   .container
@@ -32,7 +33,7 @@ section.signup-image-area
     h2.signup-image-area__title
       |LINEアカウント情報を
       br
-      |いいねリマインダーに登録しましょう！
+      |ReLikeに登録しましょう！
     ul.signup-image-area__wrapper
       li.signup-image-area__items
         = image_tag 'LINE_APP.png' , class: 'signup-image-area__items__image'
@@ -41,6 +42,6 @@ section.signup-image-area
         = image_tag 'Arrow_1.png' , class: 'signup-image-area__items__image__center'
       li.signup-image-area__items
         = image_tag 'account-icon.png' , class: 'signup-image-area__items__image'
-        p.signup-image-area__items__text いいねリマインダー
-
-    = link_to 'LINEアカウントを登録' , user_line_omniauth_authorize_path , class: 'confirm-btn'
+        p.signup-image-area__items__text ReLike
+    .signup-image-area__btn
+      = link_to 'LINEアカウントを登録' , user_line_omniauth_authorize_path , class: 'confirm-btn'

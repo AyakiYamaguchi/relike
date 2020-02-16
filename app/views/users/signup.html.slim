@@ -1,6 +1,7 @@
 header
   .container
-    h1.header-text LOGO
+    h1.header-logo
+      = image_tag 'logo.png' , class: 'header-logo-img'
 
 section.signup-process
   .container
@@ -30,7 +31,7 @@ section.signup-process
 section.signup-image-area
   .container
     h2.signup-image-area__title
-      |いいねリマインダーのLINE公式アカウントを
+      |ReLike のLINE公式アカウントを
       br
       |友達登録しましょう！
     = image_tag 'https://qr-official.line.me/sid/M/193znlwv.png', class: 'signup-image-area__line-add-friend__img'

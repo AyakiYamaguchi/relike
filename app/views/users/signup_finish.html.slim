@@ -1,6 +1,7 @@
 header
   .container
-    h1.header-text LOGO
+    h1.header-logo
+      = image_tag 'logo.png' , class: 'header-logo-img'
 
 section.finish-area
   .container
@@ -17,4 +18,5 @@ section.signup-finish
   .container
     p.signup-finish__text
       | さっそく最初のいいねチェックをはじめましょう。
-    = link_to 'いいねチェックを始める' , "/remind_lists/#{current_user.id}/#{@today}" , class: 'confirm-btn'
+    .signup-image-area__btn
+      = link_to 'いいねチェックを始める' , "/remind_lists/#{current_user.id}/#{@today}" , class: 'confirm-btn'

@@ -1,6 +1,7 @@
 header
   .container
-    h1.header-text LOGO
+    h1.header-logo
+      = image_tag 'logo.png' , class: 'header-logo-img'
 
 section.signup-process
   .container
@@ -32,15 +33,15 @@ section.signup-image-area
     h2.signup-image-area__title
       |Twitterアカウントを
       br
-      |いいねリマインダーと連携させましょう！
+      |ReLike と連携させましょう！
     ul.signup-image-area__wrapper
       li.signup-image-area__items
         = image_tag 'account-icon.png' , class: 'signup-image-area__items__image'
-        p.signup-image-area__items__text いいねリマインダー
+        p.signup-image-area__items__text ReLike
       li.signup-image-area__items
         = image_tag 'Arrow_2.png' , class: 'signup-image-area__items__image__center'
       li.signup-image-area__items
         = image_tag 'Twitter_Social_Icon_Circle_Color.png' , class: 'signup-image-area__items__image'
         p.signup-image-area__items__text Twitterアカウント
-
-    = link_to 'Twitterアカウントを連携' , user_twitter_omniauth_authorize_path , class: 'confirm-btn'
+    .signup-image-area__btn
+      = link_to 'Twitterアカウントを連携' , user_twitter_omniauth_authorize_path , class: 'confirm-btn'

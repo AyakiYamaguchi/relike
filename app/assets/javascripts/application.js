@@ -10,7 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-// = require rails-ujs
+//= require rails-ujs
 //= require activestorage
 //= require jquery
 //= require jquery_ujs
@@ -24,6 +24,7 @@
 $(function() {
   var $textarea = $('.memo-input-text-area');
   var lineHeight = parseInt($textarea.css('lineHeight'));
+  console.log('test');
   $textarea.on('input', function(e) {
     var lines = ($(this).val() + '\n').match(/\n/g).length;
     $(this).height(lineHeight * lines);
@@ -33,7 +34,6 @@ $(function() {
 
 // 入力したメモの内容を画面に追加する
 $(function() {
-
   $('#memo_btn').click(function() {
 
     var memo_content = $('.memo-input-text-area').val();
@@ -52,10 +52,25 @@ $(function() {
 
     $('.memo-no-content').addClass('.no-content');
     // 入力していたメモをリセット
-    // $('.memo-input-text-area').val("");
+    $('.memo-input-text-area').val("");
     // ボタンのクリック状態をリセット
     $('.memo-input-tweet-details__submit').attr('disabled', false);
   });
+});
+
+
+// ローディングエフェクトの設定
+$(function(){
+	var loader = $('.loader-wrapper');
+	//ページの読み込みが完了したらアニメーションを非表示
+	$(window).on('load',function(){
+		loader.fadeOut();
+	});
+
+	// ページの読み込みが完了してなくても3秒後にアニメーションを非表示にする
+	setTimeout(function(){
+		loader.fadeOut();
+	},3000);
 });
 
 
@@ -63,14 +78,14 @@ $(window).on('scroll', function() {
   scrollHeight = $(document).height();
   scrollPosition = $(window).height() + $(window).scrollTop();
   if ( (scrollHeight - scrollPosition) / scrollHeight <= 0.05) {
-      $('.jscroll').jscroll({
-        contentSelector: '.remind-history-list__wrapper' ,
-        nextSelector: 'span.next a',
-        callback: function() {
-          $script = $('<script>')
-          $script.attr('src', 'https://platform.twitter.com/widgets.js')
-          $('body').append($script)
-        }
-      });
-    }
-  });
+    $('.jscroll').jscroll({
+      contentSelector: '.remind-history-list__wrapper' ,
+      nextSelector: 'span.next a',
+      callback: function() {
+        $script = $('<script>')
+        $script.attr('src', 'https://platform.twitter.com/widgets.js')
+        $('body').append($script)
+      }
+    });
+  }
+});

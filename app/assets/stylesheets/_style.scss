@@ -1,3 +1,5 @@
+@import "variables";
+
 // -- ランディングページ 関連 --------------------------------------//
 
 .first-view-area__wrapper {
@@ -39,7 +41,7 @@
 
 .account_id {
   font-size: 1.4rem;
-  color: #828282;
+  color: $light-gray;
 
   @media (min-width: 768px) {
     font-size: 1.8rem;
@@ -62,7 +64,7 @@
 .first-view-area__time {
   font-size: 1.2rem;
   padding-bottom: 15px;
-  color: #828282;
+  color: $light-gray;
   border-bottom: solid 1px #E0E0E0;
 
   @media (min-width: 768px) {
@@ -87,6 +89,17 @@
   }
 }
 
+.ityped-cursor {
+  font-size: 2.2rem;
+  opacity: 1;
+  -webkit-animation: blink 0.3s infinite;
+  -moz-animation: blink 0.3s infinite;
+  animation: blink 0.3s infinite;
+  animation-direction: alternate;
+}
+
+
+// いいねリマインダー登録エリア
 
 .enter-area {
   background: image-url('enter-area-background-img.jpg');
@@ -131,7 +144,7 @@
     font-weight: bold;
     padding: 20px 0;
     text-decoration: none;
-    background-color: #FBBB01;
+    background-color: $accent-color-orange;
     border-bottom: solid 5px #F2994A;
     color: #fff;
     border-radius: 5px;
@@ -150,8 +163,10 @@
 }
 
 
+// いいねリマインダーの特徴紹介エリア
+
 .introductions-area {
-  background-color: #D1ECF9;
+  background-color: $sub-color;
   padding-top: 60px;
   padding-bottom: 40px;
 
@@ -197,6 +212,10 @@
     font-size: 1.4rem;
     margin:0 10%;
     line-height: 1.8;
+
+    @media (min-width: 768px){
+      font-size: 1.8rem;
+    }
   }
 }
 
@@ -209,6 +228,10 @@
     text-align: center;
     margin-bottom: 30px;
     background: linear-gradient(transparent 70%, #4DADE1 70%);
+
+    @media (min-width: 768px){
+      font-size: 2.4rem;
+    }
   }
 }
 
@@ -232,6 +255,8 @@
   width: auto;
 }
 
+
+// いいねリマインダーの開始ステップエリア
 
 .start-procedure-area {
   padding: 60px 0;
@@ -274,7 +299,7 @@
     width: 24px;
     height: 24px;
     color: #fff;
-    background-color: #39A7E3;
+    background-color: $accent-color-blue;
     border-radius: 50%;
     text-align: center;
     line-height: 24px;
@@ -300,6 +325,8 @@
   }
 }
 
+// フッターエリア
+
 footer {
 
   ul {
@@ -313,17 +340,489 @@ footer {
     margin-left: 15px;
     a {
       text-decoration: none;
-      color: #828282;
+      color: $light-gray;
     }
   }
 }
 
 
-.ityped-cursor {
-  font-size: 2.2rem;
-  opacity: 1;
-  -webkit-animation: blink 0.3s infinite;
-  -moz-animation: blink 0.3s infinite;
-  animation: blink 0.3s infinite;
-  animation-direction: alternate;
+
+
+// -- signup ページ関連 --------------------------------------//
+
+.signup-process {
+  padding: 30px 0;
+}
+
+.signup-process__wrapper {
+  display: flex;
+}
+
+.signup-process__bar__step1 {
+  position: relative;
+
+  &::before {
+    content: "";
+    width: 33.333333333%;
+    height: 3px;
+    background-color: $accent-color-blue;
+    position: absolute;
+    top: 16px;
+    left: 16.66666666666666666%;
+    z-index: 0;
+  }
+
+  &::after {
+    content: "";
+    width: 33.333333333%;
+    height: 3px;
+    background-color: #BDBDBD;
+    position: absolute;
+    top: 16px;
+    right: 16.66666666666666666%;
+    z-index: 0;
+  }
+}
+
+.signup-process__bar__step2 {
+  position: relative;
+
+  &::before {
+    content: "";
+    width: 33.333333333%;
+    height: 3px;
+    background-color: #BDBDBD;
+    position: absolute;
+    top: 16px;
+    left: 16.66666666666666666%;
+    z-index: 0;
+  }
+
+  &::after {
+    content: "";
+    width: 33.333333333%;
+    height: 3px;
+    background-color: $accent-color-blue;
+    position: absolute;
+    top: 16px;
+    right: 16.66666666666666666%;
+    z-index: 0;
+  }
+}
+
+.signup-process__bar__step3 {
+  position: relative;
+
+  &::before {
+    content: "";
+    width: 33.333333333%;
+    height: 3px;
+    background-color: #BDBDBD;
+    position: absolute;
+    top: 16px;
+    left: 16.66666666666666666%;
+    z-index: 0;
+  }
+
+  &::after {
+    content: "";
+    width: 33.333333333%;
+    height: 3px;
+    background-color: #BDBDBD;
+    position: absolute;
+    top: 16px;
+    right: 16.66666666666666666%;
+    z-index: 0;
+  }
+}
+
+.line-btn-area {
+  text-align: center;
+  padding-bottom: 50px;
+  transform: scale(1.3);
+}
+
+.signup-finish__text {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  color: $accent-color-blue;
+  margin-bottom: 20px;
+}
+
+
+// --  いいねチェック画面関連 --------------------------------------//
+
+// ツイート表示エリア
+.check-tweet {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  @media (min-width: 768px){
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+}
+
+.check-tweet__number {
+  padding-bottom: 10px;
+  font-size: 1.4rem;
+  text-align: center;
+
+  @media (min-width: 768px){
+    padding-bottom: 20px;
+    font-size: 1.8rem;
+  }
+}
+
+// いいねチェックボタンエリア
+.iine-check {
+  height: 90px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #E1E1E1;
+  position: fixed;
+  bottom: 0;
+  margin: 0 -2.5%;
+}
+
+.iine-check__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.iine-check__btn {
+  display: inline-block;
+  width: 45%;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.iine-check__btn__left {
+  background-color: #EEEEEE;
+  color: #000000;
+  -webkit-appearance: none;
+  border-bottom: solid 5px #BDBDBD;
+}
+
+.iine-check__btn__right {
+  background-color: $accent-color-blue;
+  color: #fff;
+  -webkit-appearance: none;
+  border-bottom: solid 5px #00AFE1;
+}
+
+
+// いいねチェック完了画面
+
+.finish-area__title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 25px;
+}
+
+.finish-area__text {
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.finish-area__img {
+  text-align: center;
+  margin-bottom: 25px;
+
+  img {
+    height: 75px;
+    width: auto;
+  }
+}
+
+.finish-area__home-btn {
+  display: inline-block;
+  width: 100%;
+  padding: 20px 0 ;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  border-radius: 5px;
+  color: #4F4F4F;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+
+// -- ホーム画面 --------------------------------------//
+
+.remind-history-list__item {
+  width: 100%;
+  background-color: #fff;
+  padding: 20px 0;
+  margin-bottom: 10px;
+
+  @media (min-width: 768px) {
+    padding: 25px 0;
+    margin-bottom: 30px;
+  }
+}
+
+.remind-history-list__item__title_wrapper {
+  display: flex;
+  justify-content: space-between;
+
+  @media (min-width: 768px) {
+    max-width: 500px;
+    margin: 0 auto;
+    margin-bottom: 15px;
+  }
+}
+
+.remind-history-list__item__title {
+  font-size: 1.4rem;
+  font-weight: bold;
+
+  @media (min-width: 768px) {
+    font-size: 1.8rem;
+  }
+}
+
+.remind-history-list__item__link {
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: $accent-color-blue;
+  font-weight: bold;
+
+  @media (min-width: 768px) {
+    font-size: 1.8rem;
+  }
+}
+
+.remind-remind-history-list__item__tweet-wrapper {
+  position: relative;
+
+  @media (min-width: 768px) {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+.remind-remind-history-list__item__tweet-wrapper a{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.remind-history-list__item__tweet {
+  width: 100%;
+}
+
+twitter-widget {
+  margin: 0 auto;
+}
+
+
+// -- リマインド回数別のツイート一覧 --------------------------------------//
+
+.remind-history-list__item__wrapper {
+  position: relative;
+}
+
+.remind-history-list__item__wrapper a{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.no_link {
+  pointer-events: none;
+}
+
+.remind-history-list__item__memo_counts {
+  display: flex;
+  justify-content: flex-end;
+
+  @media (min-width: 768px) {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+.comment-icon-image {
+  height: 17px;
+  width: auto;
+  margin-right: 5px;
+
+  @media (min-width: 768px) {
+    height: 20px;
+  }
+}
+
+.comment-counts {
+  font-size: 1.3rem;
+  line-height: 17px;
+  margin-right: 3px;
+
+  @media (min-width: 768px) {
+    font-size: 1.6rem;
+  }
+}
+
+.pagination {
+  display: none;
+}
+
+
+// -- いいねチェック画面のメモ登録エリア --------------------------------------//
+
+.memo-input-iine-check__wrapper {
+  display: flex;
+}
+
+.memo-input-iine-check__text_area {
+  width: 80%;
+  height: 36px;
+  max-height: 200px;
+  padding: 8px 2.5%;
+  border: 1px solid #ECECEC;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1.4rem;
+  line-height: 1.3;
+  -webkit-appearance: none;
+}
+
+.memo-input-iine-check__submit {
+  width: 19%;
+  height: 36px;
+  margin-left: 1%;
+  background-color: $accent-color-blue;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+}
+
+.memo-input-tweet-details {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid #ECECEC;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  vertical-align: middle;
+}
+
+.memo-input-tweet-details__wrapper {
+  display: flex;
+}
+
+.memo-input-tweet-details__text_area {
+  width: 80%;
+  height: 42px;
+  max-height: 200px;
+  padding: 10px 2.5%;
+  border: 1px solid #ECECEC;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1.6rem;
+  line-height: 1.3;
+  -webkit-appearance: none;
+}
+
+.memo-input-tweet-details__submit {
+  width: 19%;
+  height: 42px;
+  margin-left: 1%;
+  background-color: $accent-color-blue;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+}
+
+.memo-input-text-area {
+  line-height: 1.5;
+}
+
+
+
+// -- ツイート詳細画面のメモ登録エリア --------------------------------------//
+.memo-margin {
+  margin-bottom: 250px;
+}
+
+
+.memo-input-tweet-details {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid #ECECEC;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  vertical-align: middle;
+}
+
+.memo-input-tweet-details__wrapper {
+  display: flex;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+}
+
+.memo-input-tweet-details__text_area {
+  width: 80%;
+  height: 42px;
+  max-height: 200px;
+  padding: 10px 2.5%;
+  border: 1px solid #ECECEC;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1.6rem;
+  line-height: 1.3;
+  -webkit-appearance: none;
+}
+
+.memo-input-tweet-details__submit {
+  width: 18%;
+  height: 42px;
+  background-color: $accent-color-blue;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 20px;
+  right: 2.5%;
+  -webkit-appearance: none;
 }

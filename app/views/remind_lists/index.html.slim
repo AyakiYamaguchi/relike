@@ -1,6 +1,7 @@
 header
   .container
-    h1.header-text LOGO
+    h1.header-logo
+      = image_tag 'logo.png' , class: 'header-logo-img'
 
 / リマインド回数別のリスト表示エリア
 section.remind-history-list
@@ -9,11 +10,13 @@ section.remind-history-list
   
       .remind-history-list__item
         .container
-          .remind-history-list__item__title_wrapper
-            p.remind-history-list__item__title = "#{group_item[:count]}回以上リマインドしたツイート(#{group_item[:number]}件)"
-            = link_to 'もっと見る' , "/remind_lists/remind_counts/#{group_item[:count]}", class: 'remind-history-list__item__link'
-          .remind-history-list__item__tweet
-            = group_item[:tweet].html_safe
+            .remind-history-list__item__title_wrapper
+              p.remind-history-list__item__title = "#{group_item[:count]}回以上リマインドしたツイート(#{group_item[:number]}件)"
+              = link_to 'もっと見る' , "/remind_lists/remind_counts/#{group_item[:count]}", class: 'remind-history-list__item__link'
+            .remind-remind-history-list__item__tweet-wrapper
+              = link_to '',"/remind_lists/#{group_item[:remind_list].id}"
+              .remind-history-list__item__tweet.no_link
+                = group_item[:tweet].html_safe
 
 
 <!-- widgets.js -->

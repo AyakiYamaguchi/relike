@@ -1,4 +1,12 @@
+// 共通で利用する変数や関数の定義
+
 body {
   font-family: "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN W3", "Hiragino Sans", "ヒラギノ角ゴシック", sans-serif;
 }
 
+
+$base-color-gray: #F8F8F8;
+$sub-color: #D1ECF9;
+$light-gray: #828282;
+$accent-color-blue: #01C6FF;
+$accent-color-orange: #FBBB01;

@@ -1,15 +1,16 @@
 header
   .container
-    h1.header-text = "LOGO"
+    h1.header-logo
+      = image_tag 'logo.png' , class: 'header-logo-img'
 
 section.first-view-area
   .container
     .first-view-area__wrapper
       .first-view-area__account
-        = image_tag 'top-account-icon.png'
+        = image_tag 'account-icon.png'
         .first-view-area__account_name
-          p.account_name いいねリマインダー
-          p.account_id @iine-reminder
+          p.account_name ReLike 公式
+          p.account_id @relike
 
       .first-view-area__text
         span#ityped1.ityped
@@ -34,37 +35,35 @@ section.enter-area
         h2
           | さっそく
           br
-          | いいねリマインダーを
-          br
-          | 使ってみる
+          | ReLike 使ってみる
         .enter-area-btn
-          = link_to 'いいねリマインダーに登録' , signup_path
+          = link_to 'ReLike に登録' , signup_path
 
   
 section.introductions-area
   .container
-    h2 いいねリマインダーでできること
+    h2 ReLike でできること
     .introductions-area__wrapper
       .introductions-area__item
         .introductions-area__item__title
-          h3 いいねしたツイートをリマインド配信
+          h3 リマインド配信
         .introductions-area__item__img
           = image_tag 'remind-icon.png' , class: 'remind-icon'
         p
           |過去にいいねしたツイートを、定期的にLINEでリマインド通知してくれます。
           br
-          |感銘を受けたツイートや、大切な思い出のツイートを思い出させてくれます。
+          |感銘を受けたツイートや、後で見直そうと思ったツイートを思い出させてくれます。
 
       .introductions-area__item
         .introductions-area__item__title
-          h3 いいねしたツイートのチェック
+          h3 ツイートチェック
         .introductions-area__item__img
           = image_tag 'check-icon.png' , class: 'check-icon'
         p 過去にいいねしたツイート確認し「また見たい」か「もう見ない」ツイートに分ける事ができます。「また見たい」を選択したツイートは、一定期間でリマインド通知されます。
 
       .introductions-area__item
         .introductions-area__item__title
-          h3 いいねしたツイートへのメモ
+          h3 メモの登録
         .introductions-area__item__img
           = image_tag 'comment-icon.png' , class: 'comment-icon'
         p
@@ -89,7 +88,7 @@ section.start-procedure-area
           = image_tag 'Arrow_1.png' , class: 'signup-image-area__items__image__center'
         li.signup-image-area__items
           = image_tag 'account-icon.png' , class: 'signup-image-area__items__image'
-          p.signup-image-area__items__text いいねリマインダー
+          p.signup-image-area__items__text ReLike
 
     .start-procedure-area__item
       .start-procedure-area__item__title
@@ -103,7 +102,7 @@ section.start-procedure-area
           = image_tag 'Arrow_1.png' , class: 'signup-image-area__items__image__center'
         li.signup-image-area__items
           = image_tag 'account-icon.png' , class: 'signup-image-area__items__image'
-          p.signup-image-area__items__text いいねリマインダー
+          p.signup-image-area__items__text Relike
 
     .start-procedure-area__item
       .start-procedure-area__item__title
@@ -112,7 +111,7 @@ section.start-procedure-area
       ul.signup-image-area__wrapper
         li.signup-image-area__items
           = image_tag 'account-icon.png' , class: 'signup-image-area__items__image'
-          p.signup-image-area__items__text いいねリマインダー
+          p.signup-image-area__items__text ReLike
         li.signup-image-area__items
           = image_tag 'Arrow_2.png' , class: 'signup-image-area__items__image__center'
         li.signup-image-area__items
@@ -126,11 +125,9 @@ section.enter-area
         h2
           | さっそく
           br
-          | いいねリマインダーを
-          br
-          | 使ってみる
+          | ReLike を使ってみる
         .enter-area-btn
-          = link_to 'いいねリマインダーに登録' , signup_path
+          = link_to 'ReLikeに登録' , signup_path
 
 footer
   ul

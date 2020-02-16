@@ -1,6 +1,6 @@
 class RemindListsController < ApplicationController
   before_action :authenticate_user!
-  before_action :date_parse , only:[:finish , :not_found , :check_list]
+  before_action :date_parse , only:[:finish , :check_list]
   before_action :get_remind_list , only:[:show , :update]
   include OembedTweet
 
@@ -16,8 +16,10 @@ class RemindListsController < ApplicationController
       @remind_group.push(
         count: count ,
         number: number ,
+        remind_list: remind_list,
         tweet: tweet
       )
+      
     end
   end
 
@@ -44,7 +46,6 @@ class RemindListsController < ApplicationController
 
 
   def check_list
-    wday_check(@remind_date)
 
     @remind_list = RemindList.new.find_remind_tweet_list(current_user.id , @remind_date).first
 
@@ -99,13 +100,13 @@ class RemindListsController < ApplicationController
     @remind_date = Date.parse(params[:remind_date])
   end
 
-  def wday_check(remind_date)
-    if remind_date.wday == 0 # 日曜日の場合
+  def wday_check
+    if @remind_date.wday == 0 # 日曜日の場合
       return
-    elsif remind_date.wday == 3 # 水曜日の場合
+    elsif @remind_date.wday == 3 # 水曜日の場合
       return
     else
-      redirect_to not_found_remind_list_path
+      redirect_to not_found_remind_lists_path
     end
   end
 
