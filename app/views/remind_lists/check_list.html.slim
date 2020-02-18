@@ -16,17 +16,9 @@ section.memo-area
     .container
       h2 過去のメモ
   .memo-history
-    .container
-      - if @memos.present?
-        - @memos.each do |memo|
-          ul
-            li.memo-history__item
-              p.memo-history__item__date = l(memo.created_at , format: :long)
-              p.memo-history__item__content = simple_format(memo.content)
-      - else
-        ul
-          li.memo-history__item
-            p.memo-history__item__content まだメモが登録されていません。
+    .container.js-memos-container
+      - @memos.each do |memo|
+        = render 'memos/memo', memo: memo
 
 / メモの入力エリア
 section.memo-area.memo-margin
@@ -35,9 +27,9 @@ section.memo-area.memo-margin
       h2 メモを残す
   .memo-input-iine-check
     .container
-      = form_with(model: @memo, local: true) do |form|
+      = form_with(model: @memo, remote: true) do |form|
         .memo-input-iine-check__wrapper
-          = form.text_area :content , class: 'memo-input-iine-check__text_area memo-input-text-area' , placeholder: 'メモを入力'
+          = form.text_area :content , class: 'memo-input-iine-check__text_area memo-input-text-area js-memo-input-text-area' ,id: '#memo-input' ,placeholder: 'メモを入力'
           = form.hidden_field :remind_list_id , :value => @remind_list.id
           = form.submit "保存" , class: 'memo-input-iine-check__submit'
 
@@ -49,30 +41,3 @@ section.iine-check
           = form.hidden_field :remind_date , :value => params[:remind_date]
           = form.submit  "もう見ない" ,class: 'iine-check__btn iine-check__btn__left'
           = form.submit  "また見たい" , class: 'iine-check__btn iine-check__btn__right'
-
-/ いいねチェックボタンの表示エリア
-/ section.iine-check
-/   ul.iine-check__wrapper
-/     li.iine-check__btn = link_to 'もう見ない', remind_lists_path , class: 'iine-check__btn__left'
-/     li.iine-check__btn = link_to 'また見たい', remind_lists_path , class: 'iine-check__btn__right'
-
-
-
-<!-- widgets.js -->
-  javascript:
-    window.twttr = (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0],
-      t = window.twttr || {};
-    if(d.getElementById(id)) return t;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "https://platform.twitter.com/widgets.js";
-    fjs.parentNode.insertBefore(js, fjs);
-
-    t._e = [];
-    t.ready = function(f) {
-      t._e.push(f);
-    };
-
-    return t;
-    }(document, "script", "twitter-wjs"));

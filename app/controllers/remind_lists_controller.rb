@@ -57,7 +57,8 @@ class RemindListsController < ApplicationController
     end
 
     @memos = @remind_list.memos
-
+    @memo = Memo.new
+    
     # リマインドリストの埋め込みツイートを取得
     @tweet = get_oembed_tweet_only_one(@remind_list)
   end
