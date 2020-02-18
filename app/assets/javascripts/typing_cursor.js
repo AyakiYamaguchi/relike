@@ -2,7 +2,7 @@
 
 $(function() {
   if ($('#ityped1').length > 0) {
-    ityped.init(`#ityped1`, {
+    ityped.init('#ityped1', {
       // required - for now, only accepting texts
         strings: ['ReLike（リライク）は、Twitterの「いいね機能」を情報ストックに使っている人のためのサービスです。'],
         //表示させる文字
@@ -24,7 +24,7 @@ $(function() {
   }
 
   if ($('#ityped2').length > 0) {
-    ityped.init(`#ityped2`, {
+    ityped.init('#ityped2;', {
       // required - for now, only accepting texts
         strings: ['ReLikeに登録すると、過去にいいねしたツイートをLINE経由でリマインド通知してくれます。'],
         //表示させる文字
@@ -46,7 +46,7 @@ $(function() {
     }
 
   if ($('#ityped3').length > 0) {
-    ityped.init(`#ityped3`, {
+    ityped.init('#ityped3', {
       // required - for now, only accepting texts
         strings: ['感銘を受けたツイートや、明日からやろうと思って「いいね」したツイートが埋もれていませんか？'],
         //表示させる文字

@@ -84,9 +84,9 @@ test:
 #
 production:
   <<: *default
-  database: iine-reminder_production
-  username: iine-reminder
-  password: <%= ENV['IINE-REMINDER_DATABASE_PASSWORD'] %>
+  database: <%= ENV['DB_NAME'] %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
 
 
 # create user 'AyakiYamaguchi'@'localhost' identified by '65dyPOiH';
