@@ -12,7 +12,7 @@ module IineReminder
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
-    config.hosts << 'fc182ff0.ngrok.io'
+    config.hosts << 'relike.herokuapp.com'
 
     config.time_zone = 'Tokyo'
     config.active_record.default_timezone = :utc
