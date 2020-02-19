@@ -24,7 +24,7 @@ $(function() {
   }
 
   if ($('#ityped2').length > 0) {
-    ityped.init('#ityped2;', {
+    ityped.init('#ityped2', {
       // required - for now, only accepting texts
         strings: ['ReLikeに登録すると、過去にいいねしたツイートをLINE経由でリマインド通知してくれます。'],
         //表示させる文字

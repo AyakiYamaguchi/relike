@@ -32,32 +32,6 @@ $(function() {
 });
 
 
-// 入力したメモの内容を画面に追加する
-$(function() {
-  $('#memo_btn').click(function() {
-
-    var memo_content = $('.memo-input-text-area').val();
-
-    var today = new Date();
-    var year = today.getFullYear();
-    var month = today.getMonth()+1;
-    var day = today.getDate();
-    var hour = today.getHours();
-    var minute = today.getMinutes();
-
-    var memo_date = year + '/' + month + '/' + day + ' ' + hour + ':' + minute ;
-
-    // 所定の要素に新たな要素とテキストを追加する
-    //$('.memo-add-area').append('<li class="memo-history__item"><p class="memo-history__item__date">' + memo_date + '</p><p class="memo-history__item__content"></p><p>'+ memo_content +'</p></li>');
-
-    $('.memo-no-content').addClass('.no-content');
-    // 入力していたメモをリセット
-    //$('.memo-input-text-area').val("");
-    // ボタンのクリック状態をリセット
-    $('.memo-input-tweet-details__submit').attr('disabled', false);
-  });
-});
-
 
 // ローディングエフェクトの設定
 $(function(){
