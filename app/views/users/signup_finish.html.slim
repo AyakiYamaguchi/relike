@@ -19,4 +19,4 @@ section.signup-finish
     p.signup-finish__text
       | さっそく最初のいいねチェックをはじめましょう。
     .signup-image-area__btn
-      = link_to 'いいねチェックを始める' , "/remind_lists/#{current_user.id}/#{@today}" , class: 'confirm-btn'
+      = link_to 'いいねチェックを始める' , check_remind_lists_path(current_user.id , @today) , class: 'confirm-btn'

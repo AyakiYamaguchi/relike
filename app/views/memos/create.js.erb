@@ -1,3 +1,4 @@
 
 $('.js-memos-container').append("<%= j(render 'memos/memo', memo: @memo) %>");
 $('.js-memo-input-text-area').val("");
+$('.js-memo-no-content').addClass('no-content');

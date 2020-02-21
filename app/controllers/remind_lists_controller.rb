@@ -1,6 +1,6 @@
 class RemindListsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :date_parse , only:[:finish , :check_list]
+  before_action :logged_in?
+  before_action :date_parse , only:[:finish , :check_list , :update]
   before_action :get_remind_list , only:[:show , :update]
   include OembedTweet
 
@@ -51,14 +51,13 @@ class RemindListsController < ApplicationController
 
     # リマインドリストが存在しない場合は完了画面へリダイレクトさせる
     if @remind_list.blank?
-      redirect_to check_finish_remind_lists_path(current_user.id, params[:remind_date])
-      # redirect_to "/remind_lists/#{current_user.id}/#{params[:remind_date]}/finish"
+      redirect_to not_found_remind_lists_path
       return
     end
 
     @memos = @remind_list.memos
     @memo = Memo.new
-    
+
     # リマインドリストの埋め込みツイートを取得
     @tweet = get_oembed_tweet_only_one(@remind_list)
   end
@@ -71,7 +70,7 @@ class RemindListsController < ApplicationController
     @memo = Memo.new
 
     # まだリマインドリストが存在したらリストを取得してリダイレクトさせる
-    @remind_list = RemindList.new.find_remind_tweet_list(current_user.id , params[:remind_date]).first
+    @remind_list = RemindList.new.find_remind_tweet_list(current_user.id , @remind_date).first
     
     if @remind_lists.present?
       redirect_to check_remind_lists_path(current_user.id, params[:remind_date])
@@ -99,20 +98,20 @@ class RemindListsController < ApplicationController
 
   def date_parse
     @remind_date = Date.parse(params[:remind_date])
-  end
-
-  def wday_check
-    if @remind_date.wday == 0 # 日曜日の場合
-      return
-    elsif @remind_date.wday == 3 # 水曜日の場合
-      return
-    else
-      redirect_to not_found_remind_lists_path
-    end
+    logger.debug(@remind_date.class)
   end
 
   def get_remind_list
     @remind_list = RemindList.find(params[:id])
   end
 
+  # def wday_check
+  #   if @remind_date.wday == 0 # 日曜日の場合
+  #     return
+  #   elsif @remind_date.wday == 3 # 水曜日の場合
+  #     return
+  #   else
+  #     redirect_to not_found_remind_lists_path
+  #   end
+  # end
 end

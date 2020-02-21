@@ -2,6 +2,19 @@
 
 // -- ランディングページ 関連 --------------------------------------//
 
+.login-btn {
+  padding: 5px 10px;
+  border: solid 1px $accent-color-blue;
+  font-size: 1.4rem;
+  border-radius: 5px;
+  color: $accent-color-blue;
+  text-decoration: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
 .first-view-area__wrapper {
   padding: 25px 0;
 

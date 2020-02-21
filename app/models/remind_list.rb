@@ -7,7 +7,12 @@ class RemindList < ApplicationRecord
   def set_first_remind_tweet(user)
 
     # Twitterの認証情報をセット
-    @client = set_twitter_Authentication
+    @client = Twitter::REST::Client.new do |config|
+      config.consumer_key        = ENV["TWITTER_KEY"]
+      config.consumer_secret     = ENV["TWITTER_SECRET"]
+      config.access_token        = user.twitter_access_token
+      config.access_token_secret = user.twitter_access_secret
+    end
 
     # お気に入りした最新ツイート100件まで取得する
     @fav_tweets = @client.favorites( count: 100 ).reverse!
@@ -15,8 +20,6 @@ class RemindList < ApplicationRecord
     today = Date.today
     count = 0                # リマインドタイミングを計算するカウント数 
     loop_count = 1           # ループ処理を回した回数をカウントする
-
-    logger.debug(@fav_tweets)
     
     ActiveRecord::Base.transaction do
       @fav_tweets.each do |tweet|
@@ -68,13 +71,9 @@ class RemindList < ApplicationRecord
 
   # いいねチェック画面に表示するツイートを取得するメソッド
   def find_remind_tweet_list(user_id , remind_date)
-
-    # リマインド日の曜日によってツイート取得の開始日を変える
-    if remind_date.wday == 0 # 日曜日の場合
-      start_date = remind_date - 4
-    elsif remind_date.wday == 3 # 水曜日の場合
-      start_date = remind_date - 3
-    end
+    # remind_date = Date.parse(remind_date)
+    # 7日前のリマインドリストから取得するように設定
+    start_date = remind_date - 7
     
     # 表示対象のツイートの検索処理
     RemindList.where(
@@ -93,20 +92,10 @@ class RemindList < ApplicationRecord
       self.remind_count += 1
     # 残さない選択をした場合
     elsif check_result == 'もう見ない'
-      self.next_remind_at = null
+      self.next_remind_at = nil
     end
 
     self.save
   end
 
-  private
-
-  def set_twitter_Authentication
-    Twitter::REST::Client.new do |config|
-      config.consumer_key        = ENV["TWITTER_KEY"]
-      config.consumer_secret     = ENV["TWITTER_SECRET"]
-      config.access_token        = user.twitter_access_token
-      config.access_token_secret = user.twitter_access_secret
-    end
-  end
 end

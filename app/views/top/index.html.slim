@@ -1,7 +1,9 @@
 header
   .container
-    h1.header-logo
-      = image_tag 'logo.png' , class: 'header-logo-img'
+    .header-wrapper
+      h1.header-logo
+        = image_tag 'logo.png' , class: 'header-logo-img'
+      = link_to 'ログイン' , user_line_omniauth_authorize_path , class: 'login-btn'
 
 section.first-view-area
   .container

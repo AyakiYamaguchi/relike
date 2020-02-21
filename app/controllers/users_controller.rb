@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user! , only:[:signup_finish , :show]
+  before_action :logged_in? , only:[:signup_finish , :show]
   def signup
   end
 

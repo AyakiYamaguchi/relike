@@ -1,8 +1,5 @@
 ul.memo-history__item-wrapper
-  - if memo.present?
-    li.memo-history__item
-      p.memo-history__item__date = l(memo.created_at , format: :long)
-      p.memo-history__item__content = simple_format(memo.content)
-  - else
-    li.memo-history__item
-      p.memo-history__item__content まだメモが登録されていません。
+  li.memo-history__item
+    p.memo-history__item__date = l(memo.created_at , format: :long)
+    p.memo-history__item__content = simple_format(memo.content)
+      
