@@ -13,6 +13,30 @@
   top: 0;
   right: 0;
   cursor: pointer;
+
+  @media (min-width: 768px){
+    font-size: 1.8rem;
+    padding: 10px 15px;
+    top: 1.5px;
+  }
+}
+
+.back-btn {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-image: image-url('back-btn.png');
+  background-size: cover;
+  position: absolute;
+  top: 6px;
+  left: 0;
+  cursor: pointer;
+
+  @media (min-width: 768px){
+    height: 32px;
+    width: 32px;
+    top: 8px;
+  }
 }
 
 .first-view-area__wrapper {

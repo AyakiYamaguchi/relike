@@ -15,8 +15,12 @@ section.memo-area
   .memo-title-area
     .container
       h2 過去のメモ
-  .memo-history
+  .memo-history.memo-margin
     .container.js-memos-container
+      -if @memos.empty?
+        ul
+          li.memo-history__item.js-memo-no-content
+            p.memo-history__item__content まだメモが登録されていません。
       - @memos.each do |memo|
         = render 'memos/memo', memo: memo
 

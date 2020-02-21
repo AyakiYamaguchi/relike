@@ -70,8 +70,10 @@ module OembedTweet
         @result['html']
       when Net::HTTPRedirection
         @message = "Redirection: code=#{response.code} message=#{response.message}"
+        # logger.debug(@message)
       else
         @message = "HTTP ERROR: code=#{response.code} message=#{response.message}"
+        # logger.debug(@message)
       end
     end
 

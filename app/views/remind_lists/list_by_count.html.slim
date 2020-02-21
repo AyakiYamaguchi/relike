@@ -1,6 +1,8 @@
 header
   .container
-    h1.header-text = "#{params[:remind_count]}回リマインドしたツイート一覧"
+    .header-wrapper
+      h1.header-text = "#{params[:remind_count]}回リマインドしたツイート一覧"
+      = link_to '' , remind_lists_path , class: 'back-btn'
 
 section.remind-history-list.jscroll
   .remind-history-list__wrapper

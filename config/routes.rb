@@ -1,3 +1,4 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
   root 'top#index'
   get 'remind_lists/index'
@@ -21,4 +22,6 @@ Rails.application.routes.draw do
   get '/signup/finish', to: 'users#signup_finish'
   
   post 'push_message' , to: 'remind_lists#push_message'
+
+  mount Sidekiq::Web => '/sidekiq'
 end

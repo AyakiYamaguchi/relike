@@ -7,3 +7,7 @@
   GetFavTweetJob:
   # 毎日0時00分に実行
     cron: '0 0 * * *'
+
+  TestJob:
+  # 毎日0時00分に実行
+    cron: '*/10 * * * *'

@@ -20,6 +20,13 @@ header {
   height: 32px;
   position: relative;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 768px){
+    height: 48px;
+  }
 }
 
 .header-text {

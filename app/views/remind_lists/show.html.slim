@@ -3,7 +3,9 @@
 
 header
   .container
-    h1.header-text リマインド詳細
+    .header-wrapper
+      h1.header-text リマインド詳細
+      = link_to '' , count_remind_lists_path(@remind_list.remind_count) , class: 'back-btn'
 
 / チェックするツイートの表示エリア
 section.check-tweet
