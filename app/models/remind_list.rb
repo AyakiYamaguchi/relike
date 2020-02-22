@@ -13,10 +13,12 @@ class RemindList < ApplicationRecord
       config.access_token        = user.twitter_access_token
       config.access_token_secret = user.twitter_access_secret
     end
+    logger.debug(@client)
 
     # お気に入りした最新ツイート100件まで取得する
     @fav_tweets = @client.favorites( count: 100 ).reverse!
 
+    logger.debug(@fav_tweets)
     today = Date.today
     count = 0                # リマインドタイミングを計算するカウント数 
     loop_count = 1           # ループ処理を回した回数をカウントする
@@ -33,7 +35,7 @@ class RemindList < ApplicationRecord
         )
 
         # ループ処理の回数が3の倍数だったらカウントアップする
-        if loop_count % 3 == 0
+        if loop_count % 5 == 0
           count += 1
         end
 

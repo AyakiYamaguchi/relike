@@ -72,7 +72,7 @@ class RemindListsController < ApplicationController
     # まだリマインドリストが存在したらリストを取得してリダイレクトさせる
     @remind_list = RemindList.new.find_remind_tweet_list(current_user.id , @remind_date).first
     
-    if @remind_lists.present?
+    if @remind_list.present?
       redirect_to check_remind_lists_path(current_user.id, params[:remind_date])
       # redirect_to "/remind_lists/#{current_user.id}/#{params[:remind_date]}"
     else
