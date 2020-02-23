@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   root 'top#index'
   get 'remind_lists/index'
   get 'remind_lists/show'
-  devise_for :users, controllers: {:omniauth_callbacks => "omniauth_callbacks"}
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   
-  resources :users, :only => [:show]
-  resources :remind_lists, :only => [:index, :update, :show] do
+  resources :users, only: %i[show]
+  resources :remind_lists, only: %i[index update show] do
+    resources :memos, :only => [:create]
     collection do
       get 'remind_counts/:remind_count' , to: 'remind_lists#list_by_count', as: :count
       get ':user_id/:remind_date' , to: 'remind_lists#check_list' , as: :check
@@ -15,7 +16,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :memos, :only => [:create]
   get 'signup', to: 'users#signup'
   get '/signup/line', to: 'users#signup_line'
   get '/signup/twitter', to: 'users#signup_twitter'
