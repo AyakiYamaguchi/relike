@@ -32,10 +32,11 @@ section.memo-area.memo-margin
   .memo-input-iine-check
     .container
       = form_with(model: @memo, remote: true) do |form|
+        #js-alert-message.no-content メモが入力されていません
         .memo-input-iine-check__wrapper
           = form.text_area :content , class: 'memo-input-iine-check__text_area memo-input-text-area js-memo-input-text-area' ,id: '#memo-input' ,placeholder: 'メモを入力'
           = form.hidden_field :remind_list_id , :value => @remind_list.id
-          = form.submit "保存" , class: 'memo-input-iine-check__submit'
+          = form.submit "保存" , class: 'memo-input-iine-check__submit', id: 'memo_btn'
 
 
 section.iine-check
