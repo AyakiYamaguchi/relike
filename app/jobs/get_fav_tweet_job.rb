@@ -17,7 +17,7 @@ class GetFavTweetJob < ApplicationJob
       logger.debug(last_tweet.tweet_id)
   
       # 最後に登録したリマインドリスト以降のお気に入りツイートを取得
-      @fav_tweets = @client.favorites( since_id: last_tweet.tweet_id).reverse!
+      @fav_tweets = @client.favorites(since_id: last_tweet.tweet_id).reverse!
 
       # リマインド日の設定
       remind_date = Date.today + 30

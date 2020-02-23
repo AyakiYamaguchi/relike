@@ -21,19 +21,16 @@ class LineMessageRegularlyJob < ApplicationJob
     end
 
     @derively_lists = User.joins(:remind_lists).select('users.id, users.line_uid, count(users.id) as remind_count').group(:id).where(remind_lists: { next_remind_at: start_date...remind_date})
+    @derively_lists.each do |list|
+      # 対象が0件の場合は処理をスキップ
+      next if list.remind_count.zero?
 
-    ActiveRecord::Base.transaction do
-      @derively_lists.each do |list|
-        # 対象が0件の場合は処理をスキップ
-        next if list.remind_count == 0
-
-        message = {
-          type: 'text',
-          text: "https://relike.herokuapp.com/remind_lists/#{list.id}/#{remind_date.strftime("%Y%m%d")}"
-        }
-        response = @client.push_message(list.line_uid , message)
-        logger.debug(response)
-      end
+      message = {
+        type: 'text',
+        text: "https://relike.herokuapp.com/remind_lists/#{list.id}/#{remind_date.strftime("%Y%m%d")}"
+      }
+      response = @client.push_message(list.line_uid , message)
+      logger.debug(response)
     end
   end
 end
