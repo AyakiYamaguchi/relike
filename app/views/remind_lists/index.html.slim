@@ -17,16 +17,16 @@ section.remind-history-list
               = link_to '',"/remind_lists/#{group_item[:remind_list].id}"
               .remind-history-list__item__tweet.no_link
                 = group_item[:tweet].html_safe
-
-      .remind-history-list__item
-        .container
-            .remind-history-list__item__title_wrapper
-              p.remind-history-list__item__title レビュー会用のいいねチェックリンク
-            = link_to '2020年2月26日配信予定のいいねチェック' , check_remind_lists_path(current_user.id, '20200226')
-            br
-            br
-            = link_to '2020年3月2日配信予定のいいねチェック' , check_remind_lists_path(current_user.id, '20200302')
-            br
-            br
-            = link_to '2回目のいいねチェックリスト' , check_remind_lists_path(current_user.id, '20200324')
+section.remind-history-list
+  .remind-history-list__item
+    .container
+        .remind-history-list__item__title_wrapper
+          p.remind-history-list__item__title レビュー会用のいいねチェックリンク
+        = link_to '2020年2月26日配信予定のいいねチェック' , check_remind_lists_path(current_user.id, '20200226')
+        br
+        br
+        = link_to '2020年3月2日配信予定のいいねチェック' , check_remind_lists_path(current_user.id, '20200302')
+        br
+        br
+        = link_to '2回目のいいねチェックリスト' , check_remind_lists_path(current_user.id, '20200324')
 
