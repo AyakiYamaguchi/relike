@@ -867,3 +867,19 @@ twitter-widget {
   right: 2.5%;
   -webkit-appearance: none;
 }
+
+// -- メモエラー表示の共通パーツ --------------------------------------//
+
+.hide-content {
+  display: none;
+}
+
+#js-alert-message {
+  color: #e24850;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.js-alert {
+  border: 1px solid #e24850;
+}

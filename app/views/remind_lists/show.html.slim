@@ -30,6 +30,7 @@ section.memo-area
 section.memo-input-tweet-details
   .container
     = form_with(model: @memo, remote: true) do |form|
+      #js-alert-message.no-content メモが入力されていません
       .memo-input-tweet-details__wrapper
         = form.text_area :content , class: 'memo-input-tweet-details__text_area memo-input-text-area js-memo-input-text-area',id: '#memo-input' ,placeholder: 'メモを入力'
         = form.hidden_field :remind_list_id , :value => @remind_list.id

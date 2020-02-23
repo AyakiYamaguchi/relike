@@ -7,7 +7,7 @@ header
 section.remind-history-list
   - if @remind_group
     - @remind_group.each do |group_item|
-      - next if group_item[:count] == 0
+      / - next if group_item[:count] == 0
       .remind-history-list__item
         .container
             .remind-history-list__item__title_wrapper

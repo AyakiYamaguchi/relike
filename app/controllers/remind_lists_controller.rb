@@ -24,7 +24,7 @@ class RemindListsController < ApplicationController
   end
 
   def list_by_count
-    remind_lists = RemindList.where(user_id: current_user.id , remind_count: params[:remind_count]).limit(15)
+    remind_lists = RemindList.where(user_id: current_user.id , remind_count: params[:remind_count]).limit(30)
     @memos = remind_lists.joins(:memos).group("remind_lists.id").count
 
     remind_lists_items = remind_lists.map do |remind_list|

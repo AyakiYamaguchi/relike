@@ -32,6 +32,21 @@ $(function() {
 });
 
 
+// メモエリアの入力チェック 
+$(function(){
+  $('#memo_btn').click(function(){
+    var $textarea_val = $('.js-memo-input-text-area').val();
+
+    if($textarea_val == ""){
+      $('#js-alert-message').removeClass('no-content');
+      $('.js-memo-input-text-area').addClass('js-alert');
+    } else {
+      $('#js-alert-message').addClass('no-content');
+      $('.js-memo-input-text-area').removeClass('js-alert');
+    }
+  });
+});
+
 
 // ローディングエフェクトの設定
 $(function(){
