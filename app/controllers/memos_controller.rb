@@ -7,7 +7,7 @@ class MemosController < ApplicationController
   end
 
   private
-  
+
   def memo_params
     params.require(:memo).permit(:content)
   end

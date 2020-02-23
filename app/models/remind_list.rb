@@ -72,7 +72,7 @@ class RemindList < ApplicationRecord
 
 
   # いいねチェック画面に表示するツイートを取得するメソッド
-  def find_remind_tweet_list(user_id , remind_date)
+  def self.find_remind_tweet_list(user_id , remind_date)
     # remind_date = Date.parse(remind_date)
     # 7日前のリマインドリストから取得するように設定
     start_date = remind_date - 7
@@ -81,23 +81,23 @@ class RemindList < ApplicationRecord
     RemindList.where(
       user_id: user_id ,
       next_remind_at: start_date...remind_date,
-    ).limit(1)
+    ).order(:id).first
   end
 
 
   # いいねチェック結果の処理メソッド
-  def iine_check(check_result)
+  def iine_check!(check_result)
 
     # 残すを選択した場合
     if check_result === 'また見たい'
-      self.next_remind_at = Date.today + 30
+      self.next_remind_at = 30.days.since.to_date
       self.remind_count += 1
     # 残さない選択をした場合
     elsif check_result == 'もう見ない'
       self.next_remind_at = nil
     end
 
-    self.save
+    self.save!
   end
 
 end
