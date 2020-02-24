@@ -1,4 +1,3 @@
-- # コントローラで制御したい
 - if @remind_list.user_id != current_user.id
   - redirect_to remind_lists_path
 
@@ -12,7 +11,7 @@ header
 section.check-tweet
   .container
     - if @tweet
-      = @tweet.html_safe
+    = @tweet.html_safe
 
 / 過去のメモ表示エリア
 section.memo-area

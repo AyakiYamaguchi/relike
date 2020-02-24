@@ -11,13 +11,15 @@ class User < ApplicationRecord
     super if confirmed?
   end
 
+
   # LINEapiからの取得した情報をセットする
-  def line_login!(omniauth)
+  def line_login(omniauth)
     self.line_access_token = omniauth['credentials']['token']
     self.line_refresh_token = omniauth['credentials']['refresh_token']
     self.name = omniauth['info']['name']
     self.save!
   end
+
 
   # Twitter 認証で取得した情報をセットする
   def link_with_twitter(omniauth)
@@ -26,4 +28,6 @@ class User < ApplicationRecord
     self.twitter_access_secret = omniauth['credentials']['secret']
     self.save!
   end
+
+  
 end

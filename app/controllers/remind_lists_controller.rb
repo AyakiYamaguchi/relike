@@ -5,13 +5,12 @@ class RemindListsController < ApplicationController
   include OembedTweet
 
   def index
-    remind_lists_count = current_user.remind_lists.group(:remind_count).order(remind_count: :desc).count(:remind_count)
+    remind_lists_count = RemindList.group(:remind_count).where(user_id: current_user.id).order('remind_count DESC').count(:remind_count)
 
     @remind_group = []
-    # map使えそう
     remind_lists_count.each do |remind_count , number|
       count = remind_count
-      remind_list = RemindList.where(user: current_user , remind_count: count).first
+      remind_list = RemindList.where(user_id: current_user.id , remind_count: count).first
       tweet = get_oembed_tweet_only_one(remind_list)
 
       @remind_group.push(
@@ -26,12 +25,12 @@ class RemindListsController < ApplicationController
 
   def list_by_count
     remind_lists = RemindList.where(user_id: current_user.id , remind_count: params[:remind_count]).limit(30)
-    memos = remind_lists.joins(:memos).group("remind_lists.id").count
+    @memos = remind_lists.joins(:memos).group("remind_lists.id").count
 
     remind_lists_items = remind_lists.map do |remind_list|
       {
         remind_list: remind_list ,
-        memo_counts: memos[remind_list.id] ,
+        memo_counts: @memos[remind_list.id] ,
         tweet: get_oembed_tweet_only_one(remind_list)
       }
     end
@@ -48,7 +47,7 @@ class RemindListsController < ApplicationController
 
   def check_list
 
-    @remind_list = RemindList.find_remind_tweet_list(current_user.id , @remind_date).first
+    @remind_list = RemindList.new.find_remind_tweet_list(current_user.id , @remind_date).first
 
     # リマインドリストが存在しない場合は完了画面へリダイレクトさせる
     if @remind_list.blank?
@@ -66,12 +65,12 @@ class RemindListsController < ApplicationController
 
   def update
     # いいねチェック結果の更新処理へ
-    @remind_list.iine_check!(params[:commit])
+    @remind_list.iine_check(params[:commit])
 
     @memo = Memo.new
 
     # まだリマインドリストが存在したらリストを取得してリダイレクトさせる
-    @remind_list = RemindList.find_remind_tweet_list(current_user.id , @remind_date).first
+    @remind_list = RemindList.new.find_remind_tweet_list(current_user.id , @remind_date).first
     
     if @remind_list.present?
       redirect_to check_remind_lists_path(current_user.id, params[:remind_date])
