@@ -30,7 +30,9 @@ class LineMessageRegularlyJob < ApplicationJob
         message = {
           type: 'text',
           text: "https://relike.herokuapp.com/remind_lists/#{list.id}/#{remind_date.strftime("%Y%m%d")}"
+          logger.debug(text)
         }
+        logger.debug()
         response = @client.push_message(list.line_uid , message)
         logger.debug(response)
       end
