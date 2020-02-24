@@ -11,14 +11,14 @@ class LineMessageRegularlyJob < ApplicationJob
     }
 
     remind_date = Date.today
-
-    if remind_date.wday == 0 # 日曜日の場合
-      start_date = remind_date - 4
-    elsif remind_date.wday == 3 # 水曜日の場合
-      start_date = remind_date - 3
-    else
-      return
-    end
+    start_date = remind_date - 7
+    # if remind_date.wday == 0 # 日曜日の場合
+    #   start_date = remind_date - 4
+    # elsif remind_date.wday == 3 # 水曜日の場合
+    #   start_date = remind_date - 3
+    # else
+    #   return
+    # end
 
     @derively_lists = User.joins(:remind_lists).select('users.id, users.line_uid, count(users.id) as remind_count').group(:id).where(remind_lists: { next_remind_at: start_date...remind_date})
     @derively_lists.each do |list|

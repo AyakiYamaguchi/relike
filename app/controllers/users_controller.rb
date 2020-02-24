@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def signup_finish
     @today = Date.today.strftime("%Y%m%d")
+    logger.debug(@today)
   end
 
   def show
