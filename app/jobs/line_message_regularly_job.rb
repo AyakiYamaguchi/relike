@@ -9,7 +9,7 @@ class LineMessageRegularlyJob < ApplicationJob
 
       logger.debug(config.channel_secret)
     }
-
+    logger.debug(@client)
     remind_date = Date.today
     start_date = remind_date - 7
     # if remind_date.wday == 0 # 日曜日の場合
@@ -23,20 +23,18 @@ class LineMessageRegularlyJob < ApplicationJob
     @derively_lists = User.joins(:remind_lists).select('users.id, users.line_uid, count(users.id) as remind_count').group(:id).where(remind_lists: { next_remind_at: start_date...remind_date})
     logger.debug(@derively_lists)
 
-    ActiveRecord::Base.transaction do
-      @derively_lists.each do |list|
-        # 対象が0件の場合は処理をスキップ
-        next if list.remind_count == 0
+    @derively_lists.each do |list|
+      # 対象が0件の場合は処理をスキップ
+      next if list.remind_count == 0
 
-        message = {
-          type: 'text',
-          text: "https://relike.herokuapp.com/remind_lists/#{list.id}/#{remind_date.strftime("%Y%m%d")}"
-        }
-        logger.debug(message)
-        logger.debug(list.line_uid)
-        response = @client.push_message(list.line_uid , message)
-        logger.debug(response)
-      end
+      message = {
+        type: 'text',
+        text: "https://relike.herokuapp.com/remind_lists/#{list.id}/#{remind_date.strftime("%Y%m%d")}"
+      }
+      logger.debug(message)
+      logger.debug(list.line_uid)
+      response = @client.push_message(list.line_uid , message)
+      logger.debug(response)
     end
   end
 end
