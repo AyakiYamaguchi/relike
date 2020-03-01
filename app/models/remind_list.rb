@@ -100,4 +100,29 @@ class RemindList < ApplicationRecord
     self.save
   end
 
+
+  # LINEプッシュメッセージ配信のテスト用
+  def self.line_push_message
+    @client ||= Line::Bot::Client.new { |config|
+      config.channel_secret = ENV["CHANNEL_SECRET"]
+      config.channel_token = ENV["CHANNEL_ACCESS_TOKEN"]
+
+      logger.debug(config.channel_secret)
+    }
+
+    logger.debug(@client)
+
+    remind_date = Date.today
+    start_date = remind_date - 7
+
+    user = User.find_by(name: "山口彩希")
+
+    message = {
+      type: 'text',
+      text: "https://relike.herokuapp.com/remind_lists/#{user.id}/#{remind_date.strftime("%Y%m%d")}"
+    }
+
+    response = @client.push_message(user.line_uid , message)
+  end
+
 end
