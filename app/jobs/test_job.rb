@@ -5,5 +5,8 @@ class TestJob < ApplicationJob
     # Do something later
     logger.debug(Date.today)
     logger.debug('実行しました。')
+
+    response = RemindList.line_push_message
+    logger.debug(response)
   end
 end
