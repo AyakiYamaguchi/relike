@@ -1,8 +1,8 @@
 :schedule:
   LineMessageRegularlyJob:
     # 毎週日曜日と水曜日の12時00分に実行
-    cron: '0 12 * * 0,3'
-    # cron: '*/5 * * * *'
+    # cron: '0 12 * * 0,3'
+    cron: '*/1 * * * *'
 
 
   GetFavTweetJob:
@@ -11,4 +11,4 @@
 
   TestJob:
   # 毎日0時00分に実行
-    cron: '*/1 * * * *'
+    # cron: '*/1 * * * *'
