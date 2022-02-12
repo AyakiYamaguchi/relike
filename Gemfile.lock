@@ -209,7 +209,8 @@ GEM
     orm_adapter (0.5.0)
     pg (1.2.2)
     public_suffix (4.0.3)
-    puma (3.12.2)
+    puma (4.3.11)
+      nio4r (~> 2.0)
     raabro (1.1.6)
     rack (2.1.2)
     rack-protection (2.0.8.1)
@@ -375,7 +376,7 @@ DEPENDENCIES
   omniauth-line
   omniauth-twitter
   pg (>= 0.18, < 2.0)
-  puma (~> 3.11)
+  puma (~> 4.3)
   rails (~> 6.0.1)
   rspec-rails (~> 3.7)
   sass-rails (~> 5.0)
